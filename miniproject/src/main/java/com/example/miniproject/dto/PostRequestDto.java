@@ -8,6 +8,6 @@ import lombok.Setter;
 public class PostRequestDto {
     private String title;
     private String contents;
-    private String filename;
-    private String filepath;
+//    private String filename;
+//    private String filepath;
 }

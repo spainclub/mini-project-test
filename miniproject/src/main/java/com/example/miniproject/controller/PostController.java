@@ -18,8 +18,8 @@ public class PostController {
 
     // 게시물 작성
     @PostMapping("/api/posts")
-    public PostResponseDto writePost(@RequestBody PostRequestDto postRequestDto, MultipartFile file, @AuthenticationPrincipal UserDetailsImpl userDetails) throws Exception {
-        return postService.writePost(postRequestDto, file, userDetails.getUser());
+    public PostResponseDto writePost(@RequestBody PostRequestDto postRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) throws Exception {
+        return postService.writePost(postRequestDto, userDetails.getUser());
     }
 
     //게시물 전체 조회

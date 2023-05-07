@@ -11,8 +11,6 @@ Mminiproject/src/main/java/com/example/miniproject/MiniprojectApplication.java,
 Sminiproject/src/main/java/com/example/miniproject/repository/CommentRepository.java,4\4\44a59cc4d4924e48d254037109b6296985319f15
 }
 Mminiproject/src/main/java/com/example/miniproject/dto/CommentResponseDto.java,8\6\86ba2072c60293e6a718e2768d018aa7fc775b08
-z
-Jminiproject/src/main/java/com/example/miniproject/dto/PostResponseDto.java,a\f\afb57739d8e46775255746b4532d4aec4a861968
 u
 Eminiproject/src/main/java/com/example/miniproject/entity/Comment.java,c\f\cf32a5bc382b3d9d489f847d65410fa0db8b3e0f
 |

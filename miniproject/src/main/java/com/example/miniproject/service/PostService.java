@@ -35,21 +35,7 @@ public class PostService {
     }
 
     // 게시글 작성
-    public PostResponseDto writePost(PostRequestDto postRequestDto, MultipartFile file, User user) throws Exception{
-        // 파일 저장 경로
-        String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";  // s3 서버
-
-        UUID uuid = UUID.randomUUID();  // 식별자 랜덤 생성
-
-        String fileName = uuid + "_" + file.getOriginalFilename();  // 랜덤식별자_본래파일명
-
-        File saveFile = new File(projectPath, fileName);
-
-        postRequestDto.setFilename(fileName);
-        postRequestDto.setFilepath("/files/" + fileName);  // 저장된 파일경로와 파일 이름
-
-        file.transferTo(saveFile);
-
+    public PostResponseDto writePost(PostRequestDto postRequestDto, User user){
         // 게시글 저장
         Post post = postRepository.saveAndFlush(new Post(postRequestDto,user));
         return new PostResponseDto(post);
