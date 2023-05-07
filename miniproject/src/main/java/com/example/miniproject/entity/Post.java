@@ -22,19 +22,7 @@ public class Post extends Timestamped {
     private String title;
 
     @Column(nullable = false)
-    private String writer;
-
-    @Column(nullable = false)
-    private String content;
-
-    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
-    @OrderBy("createdAt DESC")
-    private List<Comment> commentList = new ArrayList<>();
-
-    @JsonIgnore
-    @JoinColumn(name = "user_id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    private String contents;
 
     @Column(nullable = false)
     private String filename;
@@ -42,10 +30,18 @@ public class Post extends Timestamped {
     @Column(nullable = false)
     private String filepath;
 
+    @JsonIgnore
+    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
+    @OrderBy("createdDate DESC")
+    private List<Comment> commentList = new ArrayList<>();
+
     public Post(PostRequestDto postRequestDto, User user) {
         this.title = postRequestDto.getTitle();
-        this.writer = postRequestDto.getWriter();
-        this.content = postRequestDto.getContent();
+        this.contents = postRequestDto.getContents();
         this.filename = postRequestDto.getFilename();
         this.filepath = postRequestDto.getFilepath();
         this.user = user;
@@ -53,10 +49,22 @@ public class Post extends Timestamped {
 
     public void updatePost(PostRequestDto postRequestDto) {
         this.title = postRequestDto.getTitle();
-        this.writer = postRequestDto.getWriter();
-        this.content = postRequestDto.getContent();
+        this.contents = postRequestDto.getContents();
         this.filename = postRequestDto.getFilename();
         this.filepath = postRequestDto.getFilepath();
     }
 
+    public void addComment(Comment comment) {
+        commentList.add(comment);
+        comment.setPost(this);
+    }
+
 }
+
+
+
+//    @Column(nullable = false)
+//    private String filename;
+//
+//    @Column(nullable = false)
+//    private String filepath;

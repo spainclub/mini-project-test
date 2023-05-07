@@ -11,15 +11,14 @@ import java.util.Collection;
 
 public class UserDetailsImpl implements UserDetails {
 
-    private final User user; // 인증완료된 User 객체
-    private final String username; // 인증완료된 User의 ID
+    private final User user;
+    private final String username;
 
     public UserDetailsImpl(User user, String username) {
         this.user = user;
         this.username = username;
     }
 
-    //  인증완료된 User 를 가져오는 Getter
     public User getUser() {
         return user;
     }

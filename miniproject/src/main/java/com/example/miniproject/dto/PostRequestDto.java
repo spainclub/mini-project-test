@@ -7,8 +7,7 @@ import lombok.Setter;
 @Setter
 public class PostRequestDto {
     private String title;
-    private String writer;
-    private String content;
+    private String contents;
     private String filename;
     private String filepath;
 }

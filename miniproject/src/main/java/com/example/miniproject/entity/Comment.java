@@ -18,10 +18,7 @@ public class Comment extends Timestamped{
     private Long id;
 
     @Column(nullable = false)
-    private String writer;
-
-    @Column(nullable = false)
-    private String content;
+    private String contents;
 
     @JsonIgnore
     @ManyToOne
@@ -31,15 +28,14 @@ public class Comment extends Timestamped{
     @ManyToOne
     private Post post;
 
-    public Comment(CommentRequestDto commentRequestDto, User user) {
-        this.writer = commentRequestDto.getWriter();
-        this.content = commentRequestDto.getContent();
+    public Comment(CommentRequestDto commentRequestDto, User user, Post post) {
+        this.contents = commentRequestDto.getContents();
         this.user = user;
+        this.post = post;
     }
 
     public void updateComment(CommentRequestDto commentRequestDto, User user) {
-        this.writer = commentRequestDto.getWriter();
-        this.content = commentRequestDto.getContent();
+        this.contents = commentRequestDto.getContents();
         this.user = user;
     }
 }

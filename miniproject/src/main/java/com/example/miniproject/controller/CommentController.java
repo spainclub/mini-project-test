@@ -14,20 +14,21 @@ public class CommentController {
     private final CommentService commentService;
 
     //댓글 작성
-    @PostMapping("/api/write/comment")
-    public CommentResponseDto writeComment(@RequestBody CommentRequestDto commentRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return commentService.writeComment(commentRequestDto, userDetails.getUser());
+    @PostMapping("/api/posts/{postId}/comments")
+    public CommentResponseDto writeComment(@PathVariable Long postId, @RequestBody CommentRequestDto commentRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        return commentService.writeComment(postId, commentRequestDto, userDetails.getUser());
     }
 
     //댓글 수정
-    @PutMapping("/api/update/comment/{commentId}")
-    public CommentResponseDto updateComment(@PathVariable Long commentId, @RequestBody CommentRequestDto commentRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    @PutMapping("/api/posts/{postId}/comments/{commentId}")
+    public CommentResponseDto updateComment(@PathVariable Long postId, @PathVariable Long commentId, @RequestBody CommentRequestDto commentRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return commentService.updateComment(commentId, commentRequestDto, userDetails.getUser());
     }
 
     //댓글 삭제
-    @DeleteMapping("/api/delete/comment/{commentId}")
-    public String deleteComment(@PathVariable Long commentId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    @DeleteMapping("/api/posts/{postId}/comments/{commentId}")
+    public String deleteComment(@PathVariable Long postId, @PathVariable Long commentId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return commentService.deleteComment(commentId, userDetails.getUser());
     }
+
 }
